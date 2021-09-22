@@ -39,11 +39,11 @@ def main():
         'Ti': 'A drink with jam and bread'
     }
 
-    for char in args.solfege:
-        if char in solfege_defs:
-            print(char + ', ' + solfege_defs[char])
+    for word in args.solfege:
+        if word in solfege_defs:
+            print(word + ', ' + solfege_defs[word])
         else:
-            print("I don't know " + '"' + char + '"')
+            print("I don't know " + '"' + word + '"')
 
 
 # --------------------------------------------------
