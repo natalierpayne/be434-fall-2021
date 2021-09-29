@@ -35,10 +35,6 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    # if os.path.isfile(args.infile):
-    #    infile = open(args.infile).read().rstrip()
-    # else:
-    #    print("[Errno 2] No such file or directory: ")
 
     line_num = 0
     if args.number:
