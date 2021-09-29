@@ -36,12 +36,12 @@ def main():
 
     args = get_args()
 
-    line_num = 0
+    # line_num = 0
     if args.number:
         for fh in args.infile:
             for num, line in enumerate(fh, start=1):
                 print('     ' + str(num) + "\t" + line, end='')
-                line_num += 1
+                # line_num += 1
     else:
         for fh in args.infile:
             for line in fh:
