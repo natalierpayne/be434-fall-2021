@@ -40,7 +40,10 @@ def main():
     if args.number:
         for fh in args.infile:
             for num, line in enumerate(fh, start=1):
-                print('     ' + str(num) + "\t" + line, end='')
+                num_string = "{0:>6}".format(str(num))
+                print(num_string + "\t" + line, end='')
+                # print('     ' + str(num) + "\t" + line, end='')
+                # ^ only good if single digit no. of lines!
                 # line_num += 1
     else:
         for fh in args.infile:
