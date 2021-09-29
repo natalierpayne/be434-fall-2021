@@ -6,7 +6,6 @@ Purpose: Python cat
 """
 
 import argparse
-import os
 
 
 # --------------------------------------------------
@@ -18,7 +17,7 @@ def get_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('infile',
-                        metavar='FILE', 
+                        metavar='FILE',
                         type=argparse.FileType('rt'),
                         nargs='+',
                         help='Input file(s)')
@@ -36,15 +35,10 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-
-    #if os.path.isfile(args.infile):
+    # if os.path.isfile(args.infile):
     #    infile = open(args.infile).read().rstrip()
-    #else:
-    #    print("[Errno 2] No such file or directory: " + os.path.basename(args.infile))
-
-    #for fh in args.infile:
-    #    for line in fh:
-    #        print(line)
+    # else:
+    #    print("[Errno 2] No such file or directory: ")
 
     line_num = 0
     if args.number:
@@ -52,15 +46,10 @@ def main():
             for num, line in enumerate(fh, start=1):
                 print('     ' + str(num) + "\t" + line, end='')
                 line_num += 1
-    else:    
+    else:
         for fh in args.infile:
             for line in fh:
                 print(line, end='')
-
-    #if args.number:
-    #    for fh in args.infile:
-    #        for num, line in enumerate(fh, start=1):
-    #            print(num, line)
 
 
 # --------------------------------------------------
