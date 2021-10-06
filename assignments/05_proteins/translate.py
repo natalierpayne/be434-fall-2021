@@ -6,6 +6,7 @@ Purpose: translate nucleic acid to amino acid
 """
 
 import argparse
+from pprint import pprint
 
 
 # --------------------------------------------------
@@ -43,7 +44,24 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    print(args.nucacid)
+    # print('seq =', args.nucacid)
+    # print('codons =', args.codons)
+    # print('outfile =', args.outfile)
+    codon_table={}
+    codon_aa_pair=[]
+    for line in args.codons:
+        # print(line.rstrip().split())
+        codon_aa_pair.append(line.rstrip().split())
+    # print(codon_aa_pair) # a list of tuples
+    for key, val in codon_aa_pair:
+        codon_table[key] = val
+    # pprint(codon_table) # print table for checking
+
+    k = 3
+    seq = args.nucacid
+    for codon in [seq[i:i + k] for i in range(0, len(seq), k)]:
+        print(codon.upper() + " " + codon_table.get(codon.upper(), '-'), file=args.outfile)
+    print("Output written to " + args.outfile) #issue here
 
 
 # --------------------------------------------------
