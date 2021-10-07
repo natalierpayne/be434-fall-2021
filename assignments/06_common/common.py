@@ -32,7 +32,7 @@ def get_args():
                         help='Output file',
                         metavar='FILE',
                         type=argparse.FileType('wt'),
-                        default=[sys.stdout])
+                        default=sys.stdout)
 
     return parser.parse_args()
 
@@ -60,9 +60,17 @@ def main():
             words_file2.append(word)
     # print(words_file2)
 
+    word = ''
+    matches = []
+
     for word in words_file2:
         if word in words_file1:
-            print(word)
+            # print(word)
+            matches.append(word)
+    matches = sorted(matches)
+    match_str = '\n'.join([str(x)for x in matches])
+    print(match_str, file=args.outfile)
+    
 
 
 # --------------------------------------------------
