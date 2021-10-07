@@ -25,7 +25,7 @@ def get_args():
     parser.add_argument('file2',
                         metavar='FILE2',
                         type=argparse.FileType('rt'),
-                        help='Input file 2')                    
+                        help='Input file 2')
 
     parser.add_argument('-o',
                         '--outfile',
@@ -67,10 +67,10 @@ def main():
         if word in words_file1:
             # print(word)
             matches.append(word)
-    matches = sorted(matches)
-    match_str = '\n'.join([str(x)for x in matches])
+    unique_matches = list(set(matches))
+    unique_matches = sorted(unique_matches)
+    match_str = '\n'.join([str(x)for x in unique_matches])
     print(match_str, file=args.outfile)
-    
 
 
 # --------------------------------------------------
