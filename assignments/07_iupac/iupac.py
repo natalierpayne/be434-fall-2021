@@ -58,14 +58,13 @@ def main():
     # print(iupac_table)
     for seq in args.seq:
         print(seq, end='')
-    print(' ', end='')
-    for seq in args.seq:
+        print(' ', end='')
         for base in seq:
             # base = f"'{base}'"
             # print(base, end='')
             if base in iupac_table:
                 print(iupac_table[base], end='')
-    print()
+        print()
 
 
 # --------------------------------------------------
