@@ -17,7 +17,7 @@ def get_args():
         description='Expand IUPAC codes',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('SEQ',
+    parser.add_argument('seq',
                         metavar='SEQ',
                         nargs = '+',
                         help='Input sequence(s)')
@@ -37,7 +37,32 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    print(args)
+    
+    iupac_table = {'A':'A', 
+                   'C':'C', 
+                   'G':'G', 
+                   'T':'T', 
+                   'U':'U', 
+                   'R':'[AG]', 
+                   'Y':'[CT]', 
+                   'S':'[GC]', 
+                   'W':'[AT]', 
+                   'K':'[GT]', 
+                   'M':'[AC]', 
+                   'B':'[CGT]', 
+                   'D':'[AGT]', 
+                   'H':'[ACT]', 
+                   'V':'[ACG]', 
+                   'N':'[ACGT]'}
+
+    # print(iupac_table)
+    for base in args.seq:
+        print(base, end='')
+    print(' ', end='')
+    for base in args.seq:
+        print(base)
+        # if base in iupac_table:
+        #     print(iupac_table.get(base)) # :(
 
 
 # --------------------------------------------------
