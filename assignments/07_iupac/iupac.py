@@ -19,7 +19,7 @@ def get_args():
 
     parser.add_argument('seq',
                         metavar='SEQ',
-                        nargs = '+',
+                        nargs='+',
                         help='Input sequence(s)')
 
     parser.add_argument('-o',
@@ -37,34 +37,35 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    
-    iupac_table = {'A':'A',
-                   'C':'C',
-                   'G':'G',
-                   'T':'T',
-                   'U':'U',
-                   'R':'[AG]',
-                   'Y':'[CT]',
-                   'S':'[GC]',
-                   'W':'[AT]',
-                   'K':'[GT]',
-                   'M':'[AC]',
-                   'B':'[CGT]',
-                   'D':'[AGT]',
-                   'H':'[ACT]',
-                   'V':'[ACG]',
-                   'N':'[ACGT]'}
+
+    iupac_table = {'A': 'A',
+                   'C': 'C',
+                   'G': 'G',
+                   'T': 'T',
+                   'U': 'U',
+                   'R': '[AG]',
+                   'Y': '[CT]',
+                   'S': '[GC]',
+                   'W': '[AT]',
+                   'K': '[GT]',
+                   'M': '[AC]',
+                   'B': '[CGT]',
+                   'D': '[AGT]',
+                   'H': '[ACT]',
+                   'V': '[ACG]',
+                   'N': '[ACGT]'}
 
     # print(iupac_table)
     for seq in args.seq:
-        print(seq, end='')
-        print(' ', end='')
+        print(seq, end='', file=args.outfile)
+        print(' ', end='', file=args.outfile)
         for base in seq:
-            # base = f"'{base}'"
-            # print(base, end='')
             if base in iupac_table:
-                print(iupac_table[base], end='')
-        print()
+                print(iupac_table[base], end='', file=args.outfile)
+        print(file=args.outfile)
+
+    if args.outfile != sys.stdout:
+        print(f'Done, see output in "{args.outfile.name}"')
 
 
 # --------------------------------------------------
