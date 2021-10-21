@@ -33,7 +33,12 @@ def get_args():
                         type=int,
                         default=3)
 
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    if args.kmer < 1:
+        parser.error(f'--kmer "{args.kmer}" must be > 0')
+
+    return args
 
 
 # --------------------------------------------------
