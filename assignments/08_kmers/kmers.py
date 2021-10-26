@@ -47,22 +47,6 @@ def main():
 
     args = get_args()
 
-    def find_kmers(seq, k):
-        """ Find k-mers in string """
-
-        n = len(seq) - k + 1
-        return [] if n < 1 else [seq[i:i + k] for i in range(n)]
-
-    # def test_find_kmers():
-    #     """ Test find_kmers """
-
-    #     assert find_kmers('', 1) == []
-    #     assert find_kmers('ACTG', 1) == ['A', 'C', 'T', 'G']
-    #     assert find_kmers('ACTG', 2) == ['AC', 'CT', 'TG']
-    #     assert find_kmers('ACTG', 3) == ['ACT', 'CTG']
-    #     assert find_kmers('ACTG', 4) == ['ACTG']
-    #     assert find_kmers('ACTG', 5) == []
-
     kmers_file1 = {}
     kmers_file2 = {}
 
@@ -82,13 +66,31 @@ def main():
                     kmers_file2[kmer] = 0
                 kmers_file2[kmer] += 1
 
-    word = ''
-
     for kmer in sorted(kmers_file2):
         if kmer in kmers_file1:
             print(f'{kmer:10}',
                   f'{kmers_file1.get(kmer):5}',
                   f'{kmers_file2.get(kmer):5}')
+
+
+# --------------------------------------------------
+def find_kmers(seq, k):
+    """ Find k-mers in string """
+
+    n = len(seq) - k + 1
+    return [] if n < 1 else [seq[i:i + k] for i in range(n)]
+
+
+# --------------------------------------------------
+def test_find_kmers():
+    """ Test find_kmers """
+
+    assert find_kmers('', 1) == []
+    assert find_kmers('ACTG', 1) == ['A', 'C', 'T', 'G']
+    assert find_kmers('ACTG', 2) == ['AC', 'CT', 'TG']
+    assert find_kmers('ACTG', 3) == ['ACT', 'CTG']
+    assert find_kmers('ACTG', 4) == ['ACTG']
+    assert find_kmers('ACTG', 5) == []
 
 
 # --------------------------------------------------
