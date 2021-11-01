@@ -6,8 +6,8 @@ Purpose: Split interleaved/paired reads
 """
 
 import argparse
-from Bio import SeqIO
 import os
+from Bio import SeqIO
 
 
 # --------------------------------------------------
@@ -53,12 +53,14 @@ def main():
                 os.mkdir(args.outdir)
             if num % 2 != 0:
                 filename = ''.join(args.outdir + '/' + root + '_1' + ext)
-                open(filename, 'a').write('>'+rec.id+'\n')
-                open(filename, 'a').write(str(rec.seq)+'\n')
+                with open(filename, 'at', encoding='utf8') as fh:
+                    fh.write('>'+rec.id+'\n')
+                    fh.write(str(rec.seq)+'\n')
             if num % 2 == 0:
                 filename = ''.join(args.outdir + '/' + root + '_2' + ext)
-                open(filename, 'a').write('>'+rec.id+'\n')
-                open(filename, 'a').write(str(rec.seq)+'\n')
+                with open(filename, 'at', encoding='utf8') as fh:
+                    fh.write('>'+rec.id+'\n')
+                    fh.write(str(rec.seq)+'\n')
 
     print(f'Done, see output in "{args.outdir}"')
 
