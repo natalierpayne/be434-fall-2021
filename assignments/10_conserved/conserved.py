@@ -6,6 +6,7 @@ Purpose: Find conserved bases
 """
 
 import argparse
+from collections import defaultdict
 
 
 # --------------------------------------------------
@@ -30,6 +31,22 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
+
+    positions = defaultdict(list)
+
+    for seq in args.file:
+        for num, char in enumerate(seq.rstrip(), start=1):
+            positions[num].append(char)
+        print(seq, end='')
+
+    for position in positions.values():
+        pos_set = set(position)
+        if len(pos_set) > 1:
+            print('X', end='')
+        else:
+            print('|', end='')
+
+    print()
 
 
 # --------------------------------------------------
