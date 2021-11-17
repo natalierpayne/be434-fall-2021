@@ -8,6 +8,10 @@ Purpose: Run-length encoding/data compression
 import argparse
 import os
 
+# pylint: disable=undefined-loop-variable
+# pylint: disable=consider-using-with
+# pylint: disable=unspecified-encoding
+
 
 # --------------------------------------------------
 def get_args():
@@ -60,6 +64,8 @@ def rle(seq):
         print(base)
     else:
         print(f'{base}{base_count}')
+
+    # ^ makes sure very last base also gets printed
 
     return ''
 
