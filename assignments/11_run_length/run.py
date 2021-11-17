@@ -38,7 +38,7 @@ def main():
 
     args = get_args()
     for seq in args.str.splitlines():
-        print(rle(seq), end='')
+        print(rle(seq))
 
 
 # --------------------------------------------------
@@ -46,6 +46,7 @@ def rle(seq):
     """ Create RLE """
 
     base_count = 0
+    ret = ''
     for num, base in enumerate(seq):
         if num == 0:
             base_count = 1
@@ -54,32 +55,31 @@ def rle(seq):
                 base_count += 1
             else:
                 if base_count == 1:
-                    print(seq[num - 1], end='')
+                    ret += seq[num - 1]
                     base_count = 1
                     # ^ reminder that for current base, also 1
                 else:
-                    print(f'{seq[num - 1]}{base_count}', end='')
+                    ret += f'{seq[num - 1]}{base_count}'
                     base_count = 1
     if base_count == 1:
-        print(base)
+        ret += base
     else:
-        print(f'{base}{base_count}')
+        ret += f'{base}{base_count}'
 
     # ^ makes sure very last base also gets printed
 
-    return ''
+    return ret
 
 
 # --------------------------------------------------
-# def test_rle():
-#     """ Test rle """
+def test_rle():
+    """ Test rle """
 
-#     assert rle('A') == 'A'
-#     assert rle('ACGT') == 'ACGT'
-#     assert rle('AA') == 'A2'
-#     assert rle('AAAAA') == 'A5'
-#     assert rle('ACCGGGTTTT') == 'AC2G3T4'
-# doesn't work with return ''
+    assert rle('A') == 'A'
+    assert rle('ACGT') == 'ACGT'
+    assert rle('AA') == 'A2'
+    assert rle('AAAAA') == 'A5'
+    assert rle('ACCGGGTTTT') == 'AC2G3T4'
 
 
 # --------------------------------------------------
