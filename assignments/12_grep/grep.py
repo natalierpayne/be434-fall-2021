@@ -50,14 +50,18 @@ def main():
 
     args = get_args()
 
+    file_no = 0
+    for fh in args.files:
+        file_no += 1
+    
     for fh in args.files:
         for line in fh:
             if args.insensitive:
                 if re.search(args.pattern, line, re.I):
-                    print(line, end='')
+                    print(line if file_no == 1 else f'{fh.name}:{line}', end='', file=args.outfile)
             else:
                 if re.search(args.pattern, line):
-                    print(line, end='')
+                    print(line if file_no == 1 else f'{fh.name}:{line}', end='', file=args.outfile)
 
 
 # --------------------------------------------------
