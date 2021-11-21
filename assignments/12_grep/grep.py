@@ -52,8 +52,12 @@ def main():
 
     for fh in args.files:
         for line in fh:
-            if re.search(args.pattern, line):
-                print(line, end='')
+            if args.insensitive:
+                if re.search(args.pattern, line, re.I):
+                    print(line, end='')
+            else:
+                if re.search(args.pattern, line):
+                    print(line, end='')
 
 
 # --------------------------------------------------
