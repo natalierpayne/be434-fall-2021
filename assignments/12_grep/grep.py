@@ -22,7 +22,7 @@ def get_args():
                         metavar='PATTERN',
                         help='Search pattern')
 
-    parser.add_argument('file',
+    parser.add_argument('files',
                         help='Input file(s)',
                         metavar='FILE',
                         type=argparse.FileType('rt'),
@@ -49,7 +49,11 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    print(args)
+
+    for fh in args.files:
+        for line in fh:
+            if re.search(args.pattern, line):
+                print(line, end='')
 
 
 # --------------------------------------------------
