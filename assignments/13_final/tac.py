@@ -39,8 +39,12 @@ def main():
 
     args = get_args()
     for fh in args.files:
+        lines = []
         for line in fh:
-            print(line)
+            lines.append(line.rstrip())
+        lines.reverse()
+        for line in lines:
+            print(line, file=args.outfile)
 
 
 # --------------------------------------------------
