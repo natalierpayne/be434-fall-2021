@@ -38,7 +38,9 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    print(args)
+    for fh in args.files:
+        for line in fh:
+            print(line)
 
 
 # --------------------------------------------------
